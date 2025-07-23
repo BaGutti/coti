@@ -18,12 +18,14 @@
         color: #333;
         background: linear-gradient(135deg, #ff9f9f 0%, #764ba2 100%);
         min-height: 100vh;
+        overflow-x: hidden;
       }
 
       .container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 20px;
+        width: 100%;
       }
 
       .header {
@@ -34,6 +36,7 @@
         margin-bottom: 30px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         text-align: center;
+        width: 100%;
       }
 
       .header h1 {
@@ -51,9 +54,10 @@
 
       .summary-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
         margin-bottom: 30px;
+        width: 100%;
       }
 
       .card {
@@ -63,6 +67,7 @@
         padding: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 100%;
       }
 
       .card:hover {
@@ -92,9 +97,10 @@
 
       .chart-section {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px;
         margin-bottom: 30px;
+        width: 100%;
       }
 
       .chart-container {
@@ -104,6 +110,8 @@
         padding: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+        width: 100%;
+        max-width: 100%;
       }
 
       .chart-container h2 {
@@ -117,6 +125,8 @@
         position: relative;
         height: 400px;
         margin-bottom: 20px;
+        width: 100%;
+        max-width: 100%;
       }
 
       .table-section {
@@ -126,6 +136,9 @@
         padding: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
       }
 
       .table-section h2 {
@@ -135,8 +148,17 @@
         text-align: center;
       }
 
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+        max-width: 100%;
+      }
+
       table {
         width: 100%;
+        min-width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
         background: white;
@@ -147,19 +169,67 @@
 
       th,
       td {
-        padding: 15px;
+        padding: 15px 8px;
         text-align: left;
         border-bottom: 1px solid #ecf0f1;
+        word-wrap: break-word;
+        max-width: 0;
       }
 
       th {
         background: #34495e;
         color: white;
         font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        white-space: nowrap;
+      }
+
+      td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       tr:hover {
         background: #f8f9fa;
+      }
+
+      .module-detail {
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .module-title {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .module-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .module-table {
+        width: 100%;
+        order: 1;
+      }
+
+      .module-chart {
+        width: 100%;
+        order: 2;
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        height: 300px;
+        max-width: 100%;
       }
 
       .timeline {
@@ -169,6 +239,7 @@
         padding: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+        width: 100%;
       }
 
       .timeline h2 {
@@ -180,12 +251,14 @@
 
       .timeline-item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 20px;
         padding: 15px;
         background: white;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        flex-direction: column;
+        width: 100%;
       }
 
       .timeline-month {
@@ -194,13 +267,14 @@
         padding: 10px 15px;
         border-radius: 25px;
         font-weight: 600;
-        min-width: 80px;
         text-align: center;
-        margin-right: 20px;
+        margin-bottom: 10px;
+        align-self: flex-start;
       }
 
       .timeline-content {
         flex: 1;
+        width: 100%;
       }
 
       .timeline-title {
@@ -221,6 +295,7 @@
         padding: 25px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         text-align: center;
+        width: 100%;
       }
 
       .footer h3 {
@@ -232,95 +307,241 @@
         color: #7f8c8d;
       }
 
+      /* MOBILE RESPONSIVE */
       @media (max-width: 768px) {
-        .header h1 {
-          font-size: 2rem;
+        body {
+          overflow-x: hidden;
         }
 
-        .chart-section {
-          grid-template-columns: 1fr;
-        }
-
-        .chart-container {
-          min-width: unset;
-        }
-
-        .chart-wrapper {
-          height: 300px;
-        }
-
-        .timeline-item {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .timeline-month {
-          margin-right: 0;
-          margin-bottom: 10px;
-        }
-
-        table {
-          font-size: 0.8rem;
-        }
-
-        th,
-        td {
-          padding: 10px 8px;
-        }
-
-        /* Responsive para tablas detalladas */
-        .table-section div[style*="grid-template-columns"] {
-          grid-template-columns: 1fr !important;
-          gap: 15px !important;
-        }
-
-        .table-section h3 {
-          font-size: 1.1rem !important;
-          text-align: center;
-        }
-      }
-
-      @media (max-width: 480px) {
         .container {
           padding: 10px;
+          width: 100%;
+          max-width: 100vw;
         }
 
-        .header,
-        .card,
-        .chart-container,
-        .table-section,
-        .timeline,
-        .footer {
-          padding: 15px;
+        .header {
+          padding: 20px 15px;
+          margin-bottom: 20px;
+          border-radius: 15px;
         }
 
         .header h1 {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .summary-cards {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .card {
+          padding: 15px;
+          border-radius: 10px;
+        }
+
+        .card h3 {
+          font-size: 0.9rem;
         }
 
         .card .value {
           font-size: 1.5rem;
         }
 
-        /* Tablas detalladas en móvil */
-        .table-section table {
+        .chart-section {
+          grid-template-columns: 1fr;
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+
+        .chart-container {
+          padding: 15px;
+          margin-bottom: 15px;
+          border-radius: 10px;
+        }
+
+        .chart-container h2 {
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+        }
+
+        .chart-wrapper {
+          height: 250px;
+        }
+
+        .table-section {
+          padding: 15px;
+          margin-bottom: 20px;
+          border-radius: 10px;
+        }
+
+        .table-section h2 {
+          font-size: 1.2rem;
+        }
+
+        .module-title {
+          font-size: 1.1rem;
+          margin-bottom: 10px;
+        }
+
+        .module-chart {
+          height: 200px;
+          padding: 10px;
+        }
+
+        .table-wrapper {
+          border-radius: 8px;
+        }
+
+        table {
+          font-size: 0.8rem;
+          border-radius: 8px;
+        }
+
+        th,
+        td {
+          padding: 8px 6px;
+          font-size: 0.8rem;
+        }
+
+        th {
+          font-size: 0.75rem;
+        }
+
+        /* Hacer que las tablas se ajusten mejor */
+        .module-table table {
+          min-width: auto;
+          width: 100%;
+        }
+
+        .module-table td,
+        .module-table th {
+          white-space: normal;
+          word-break: break-word;
+          min-width: 80px;
+        }
+
+        .module-table td:first-child,
+        .module-table th:first-child {
+          min-width: 120px;
+        }
+
+        .timeline {
+          padding: 15px;
+        }
+
+        .timeline-item {
+          padding: 10px;
+        }
+
+        .footer {
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 8px;
+        }
+
+        .header {
+          padding: 15px 10px;
+        }
+
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .header p {
+          font-size: 0.9rem;
+        }
+
+        .summary-cards {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .card .value {
+          font-size: 1.3rem;
+        }
+
+        .chart-wrapper {
+          height: 200px;
+        }
+
+        .module-chart {
+          height: 180px;
+          padding: 8px;
+        }
+
+        table {
           font-size: 0.7rem;
         }
 
-        .table-section th,
-        .table-section td {
+        th,
+        td {
           padding: 6px 4px;
+          font-size: 0.7rem;
         }
 
-        .table-section h3 {
-          font-size: 1rem !important;
-          margin-bottom: 10px !important;
+        .module-table td:first-child,
+        .module-table th:first-child {
+          min-width: 100px;
         }
 
-        /* Ocultar algunas columnas en móvil muy pequeño */
-        .table-section table th:nth-child(3),
-        .table-section table td:nth-child(3) {
-          display: none;
+        .module-table td:last-child,
+        .module-table th:last-child {
+          min-width: 80px;
+        }
+      }
+
+      /* DESKTOP RESPONSIVE */
+      @media (min-width: 769px) {
+        .module-content {
+          flex-direction: row;
+          align-items: flex-start;
+        }
+
+        .module-table {
+          flex: 1;
+          order: 1;
+        }
+
+        .module-chart {
+          width: 400px;
+          min-width: 400px;
+          order: 2;
+          height: 250px;
+        }
+
+        .timeline-item {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .timeline-month {
+          margin-bottom: 0;
+          margin-right: 20px;
+          min-width: 80px;
+        }
+
+        .summary-cards {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+      }
+
+      /* LANDSCAPE MOBILE */
+      @media (max-width: 768px) and (orientation: landscape) {
+        .chart-wrapper {
+          height: 200px;
+        }
+
+        .module-chart {
+          height: 150px;
         }
       }
     </style>
@@ -330,80 +551,60 @@
       <!-- Header -->
       <div class="header">
         <h1>📚 Biblioteca Virtual</h1>
-        <p>
-          Análisis Completo de Costos
-          <!-- y Cronograma de Desarrollo -->
-        </p>
-        <!-- <div
-          style="
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-          "
-        >
-          Proyecto: 7 meses | Presupuesto: $30,035,914 COP
-        </div> -->
+        <p>Análisis Completo de Costos</p>
       </div>
 
       <!-- Resumen General de Costos -->
       <div class="table-section">
         <h2>💼 Resumen General de Costos</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Módulo</th>
-              <th>Total (COP)</th>
-              <th>% del Proyecto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Frontend</strong></td>
-              <td>$11,340,000</td>
-              <td>38%</td>
-            </tr>
-            <tr>
-              <td><strong>Backend</strong></td>
-              <td>$10,000,000</td>
-              <td>33%</td>
-            </tr>
-            <tr>
-              <td><strong>Base de Datos</strong></td>
-              <td>$3,150,000</td>
-              <td>11%</td>
-            </tr>
-            <tr>
-              <td><strong>Testing & QA</strong></td>
-              <td>$3,000,000</td>
-              <td>10%</td>
-            </tr>
-            <tr>
-              <td><strong>Raspberry Pi</strong></td>
-              <td>$1,900,000</td>
-              <td>6%</td>
-            </tr>
-            <tr>
-              <td><strong>Kit Hardware (Con el router Opcional)</strong></td>
-              <td>$645,914</td>
-              <td>2%</td>
-            </tr>
-            <tr
-              style="
-                background: #2c3e50;
-                color: white;
-                font-weight: bold;
-                font-size: 1.1rem;
-              "
-            >
-              <td><strong>TOTAL PROYECTO</strong></td>
-              <td><strong>$30,035,914</strong></td>
-              <td><strong>100%</strong></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Módulo</th>
+                <th>Total (COP)</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Frontend</strong></td>
+                <td>$11,340,000</td>
+                <td>38%</td>
+              </tr>
+              <tr>
+                <td><strong>Backend</strong></td>
+                <td>$10,000,000</td>
+                <td>33%</td>
+              </tr>
+              <tr>
+                <td><strong>Base de Datos</strong></td>
+                <td>$3,150,000</td>
+                <td>11%</td>
+              </tr>
+              <tr>
+                <td><strong>Testing & QA</strong></td>
+                <td>$3,000,000</td>
+                <td>10%</td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi</strong></td>
+                <td>$1,900,000</td>
+                <td>6%</td>
+              </tr>
+              <tr>
+                <td><strong>Kit Hardware</strong></td>
+                <td>$645,914</td>
+                <td>2%</td>
+              </tr>
+              <tr style="background: #2c3e50; color: white; font-weight: bold">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>$30,035,914</strong></td>
+                <td><strong>100%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Summary Cards -->
@@ -411,22 +612,22 @@
         <div class="card">
           <h3>Presupuesto Total</h3>
           <div class="value">$30.0M</div>
-          <div class="label">COP (Pesos Colombianos)</div>
+          <div class="label">COP</div>
         </div>
         <div class="card">
           <h3>Duración</h3>
           <div class="value">6-8</div>
-          <div class="label">Meses de Desarrollo</div>
+          <div class="label">Meses</div>
         </div>
         <div class="card">
           <h3>Módulos</h3>
           <div class="value">6</div>
-          <div class="label">Componentes Principales</div>
+          <div class="label">Componentes</div>
         </div>
         <div class="card">
-          <h3>Horas Desarrollo</h3>
+          <h3>Horas Total</h3>
           <div class="value">780h+</div>
-          <div class="label">Total de Horas</div>
+          <div class="label">Desarrollo</div>
         </div>
       </div>
 
@@ -434,7 +635,7 @@
       <div class="chart-section">
         <!-- Distribución de Costos -->
         <div class="chart-container">
-          <h2>💰 Distribución de Costos por Módulo</h2>
+          <h2>💰 Distribución de Costos</h2>
           <div class="chart-wrapper">
             <canvas id="costChart"></canvas>
           </div>
@@ -442,7 +643,7 @@
 
         <!-- Horas por Módulo -->
         <div class="chart-container">
-          <h2>⏱️ Horas de Desarrollo por Módulo</h2>
+          <h2>⏱️ Horas de Desarrollo</h2>
           <div class="chart-wrapper">
             <canvas id="hoursChart"></canvas>
           </div>
@@ -451,7 +652,7 @@
 
       <!-- Comparación Costos vs Horas -->
       <div class="chart-container">
-        <h2>📊 Análisis: Costos vs Horas de Desarrollo</h2>
+        <h2>📊 Análisis: Costos vs Horas</h2>
         <div class="chart-wrapper">
           <canvas id="comparisonChart"></canvas>
         </div>
@@ -462,538 +663,397 @@
         <h2>📋 Desglose Detallado por Módulos</h2>
 
         <!-- Frontend Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #3498db; margin-bottom: 15px; font-size: 1.3rem">
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #3498db">
             🎨 Frontend Development (40%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente Frontend</th>
-                  <th>Subtotal (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Interfaz principal biblioteca</td>
-                  <td>$4,200,000</td>
-                </tr>
-                <tr>
-                  <td>Sistema multiidioma</td>
-                  <td>$2,800,000</td>
-                </tr>
-                <tr>
-                  <td>Responsive design</td>
-                  <td>$2,100,000</td>
-                </tr>
-                <tr>
-                  <td>Módulo traductor señas</td>
-                  <td>$1,400,000</td>
-                </tr>
-                <tr>
-                  <td>Plataforma aprendizaje</td>
-                  <td>$840,000</td>
-                </tr>
-                <tr
-                  style="background: #3498db; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL FRONTEND</strong></td>
-                  <td><strong>$11,340,000</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="frontendChart"
-                style="height: 250px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Comp. Frontend</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Interfaz biblioteca</td>
+                      <td>$4,200,000</td>
+                    </tr>
+                    <tr>
+                      <td>Sistema multiidioma</td>
+                      <td>$2,800,000</td>
+                    </tr>
+                    <tr>
+                      <td>Responsive design</td>
+                      <td>$2,100,000</td>
+                    </tr>
+                    <tr>
+                      <td>Traductor señas</td>
+                      <td>$1,400,000</td>
+                    </tr>
+                    <tr>
+                      <td>Plataforma aprendizaje</td>
+                      <td>$840,000</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #3498db;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$11,340,000</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="frontendChart"></canvas>
             </div>
           </div>
         </div>
 
         <!-- Backend Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #e74c3c; margin-bottom: 15px; font-size: 1.3rem">
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #e74c3c">
             ⚙️ Backend Development (35%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente Backend</th>
-                  <th>Subtotal (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>API REST biblioteca</td>
-                  <td>$4,000,000</td>
-                </tr>
-                <tr>
-                  <td>Sistema autenticación</td>
-                  <td>$1,600,000</td>
-                </tr>
-                <tr>
-                  <td>Gestión contenido multimedia</td>
-                  <td>$2,400,000</td>
-                </tr>
-                <tr>
-                  <td>Integración traductor</td>
-                  <td>$1,200,000</td>
-                </tr>
-                <tr>
-                  <td>Optimización performance</td>
-                  <td>$800,000</td>
-                </tr>
-                <tr
-                  style="background: #e74c3c; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL BACKEND</strong></td>
-                  <td><strong>$10,000,000</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="backendChart"
-                style="height: 250px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Comp. Backend</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>API REST biblioteca</td>
+                      <td>$4,000,000</td>
+                    </tr>
+                    <tr>
+                      <td>Sistema autenticación</td>
+                      <td>$1,600,000</td>
+                    </tr>
+                    <tr>
+                      <td>Contenido multimedia</td>
+                      <td>$2,400,000</td>
+                    </tr>
+                    <tr>
+                      <td>Integración traductor</td>
+                      <td>$1,200,000</td>
+                    </tr>
+                    <tr>
+                      <td>Optimización performance</td>
+                      <td>$800,000</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #e74c3c;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$10,000,000</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="backendChart"></canvas>
             </div>
           </div>
         </div>
 
         <!-- Base de Datos Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #2ecc71; margin-bottom: 15px; font-size: 1.3rem">
-            🗄️ Base de Datos y Arquitectura (11%)
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #2ecc71">
+            🗄️ Base de Datos (11%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente BD/Arquitectura</th>
-                  <th>Subtotal (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Diseño BD biblioteca</td>
-                  <td>$1,350,000</td>
-                </tr>
-                <tr>
-                  <td>Implementación BD</td>
-                  <td>$1,125,000</td>
-                </tr>
-                <tr>
-                  <td>Optimización consultas</td>
-                  <td>$675,000</td>
-                </tr>
-                <tr
-                  style="background: #2ecc71; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL BD/ARQUITECTURA</strong></td>
-                  <td><strong>$3,150,000</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="databaseChart"
-                style="height: 200px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Comp. BD</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Diseño BD</td>
+                      <td>$1,350,000</td>
+                    </tr>
+                    <tr>
+                      <td>Implementación BD</td>
+                      <td>$1,125,000</td>
+                    </tr>
+                    <tr>
+                      <td>Optimización consultas</td>
+                      <td>$675,000</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #2ecc71;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$3,150,000</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="databaseChart"></canvas>
             </div>
           </div>
         </div>
 
         <!-- Testing Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #f39c12; margin-bottom: 15px; font-size: 1.3rem">
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #f39c12">
             🧪 Testing y QA (10%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente Testing</th>
-                  <th>Subtotal (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Testing funcional</td>
-                  <td>$1,200,000</td>
-                </tr>
-                <tr>
-                  <td>Testing responsive</td>
-                  <td>$750,000</td>
-                </tr>
-                <tr>
-                  <td>Testing performance</td>
-                  <td>$600,000</td>
-                </tr>
-                <tr>
-                  <td>Testing seguridad</td>
-                  <td>$450,000</td>
-                </tr>
-                <tr
-                  style="background: #f39c12; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL TESTING</strong></td>
-                  <td><strong>$3,000,000</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="testingChart"
-                style="height: 200px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Comp. Testing</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Testing funcional</td>
+                      <td>$1,200,000</td>
+                    </tr>
+                    <tr>
+                      <td>Testing responsive</td>
+                      <td>$750,000</td>
+                    </tr>
+                    <tr>
+                      <td>Testing performance</td>
+                      <td>$600,000</td>
+                    </tr>
+                    <tr>
+                      <td>Testing seguridad</td>
+                      <td>$450,000</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #f39c12;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$3,000,000</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="testingChart"></canvas>
             </div>
           </div>
         </div>
 
         <!-- Raspberry Pi Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.3rem">
-            🖥️ Configuración Raspberry Pi (6%)
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #9b59b6">
+            🖥️ Raspberry Pi (6%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente Raspberry Pi</th>
-                  <th>Subtotal (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Setup servidor local</td>
-                  <td>$1,000,000</td>
-                </tr>
-                <tr>
-                  <td>Configuración seguridad</td>
-                  <td>$500,000</td>
-                </tr>
-                <tr>
-                  <td>Documentación técnica</td>
-                  <td>$400,000</td>
-                </tr>
-                <tr
-                  style="background: #9b59b6; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL RASPBERRY PI</strong></td>
-                  <td><strong>$1,900,000</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="raspberryChart"
-                style="height: 180px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Comp. Raspberry</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Setup servidor</td>
+                      <td>$1,000,000</td>
+                    </tr>
+                    <tr>
+                      <td>Config. seguridad</td>
+                      <td>$500,000</td>
+                    </tr>
+                    <tr>
+                      <td>Documentación</td>
+                      <td>$400,000</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #9b59b6;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$1,900,000</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="raspberryChart"></canvas>
             </div>
           </div>
         </div>
 
         <!-- Kit Hardware Detalle -->
-        <div style="margin-bottom: 40px">
-          <h3 style="color: #1abc9c; margin-bottom: 15px; font-size: 1.3rem">
-            🛠️ Kit Hardware Raspberry Pi (2%)
+        <div class="module-detail">
+          <h3 class="module-title" style="color: #1abc9c">
+            🛠️ Kit Hardware (2%)
           </h3>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 400px;
-              gap: 20px;
-              align-items: start;
-            "
-          >
-            <table style="margin-bottom: 0">
-              <thead>
-                <tr>
-                  <th>Componente Hardware</th>
-                  <th>Descripción</th>
-                  <th>Precio (COP)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Raspberry Pi 5 8GB RAM</strong></td>
-                  <td>
-                    Se requiere para la arquitectura del servidor local, esta
-                    versión representa una mejora de rendimiento sustancial que
-                    puede aportar solvencia en el contexto del proyecto
-                  </td>
-                  <td>$514,851</td>
-                </tr>
-                <tr>
-                  <td><strong>Cargador Raspberry Pi</strong></td>
-                  <td>
-                    Se requiere, ya que por defecto la raspberry pi, no posee un
-                    cargador
-                  </td>
-                  <td>$35,910</td>
-                </tr>
-                <tr>
-                  <td><strong>Router Wifi (opcional)</strong></td>
-                  <td>
-                    Este es opcional, ya que de por si la raspberry pi ya tiene
-                    un módulo wifi, pero el alcance es de como mucho 10mts,
-                    entonces si se requiere más alcance, se recomienda entonces
-                    este artículo
-                  </td>
-                  <td>$95,153</td>
-                </tr>
-                <tr
-                  style="background: #1abc9c; color: white; font-weight: bold"
-                >
-                  <td><strong>TOTAL KIT HARDWARE</strong></td>
-                  <td>-</td>
-                  <td><strong>$645,914</strong></td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style="
-                background: white;
-                border-radius: 10px;
-                padding: 15px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-              "
-            >
-              <canvas
-                id="hardwareChart"
-                style="height: 180px !important"
-              ></canvas>
+          <div class="module-content">
+            <div class="module-table">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Hardware</th>
+                      <th>Precio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Raspberry Pi 5 8GB</td>
+                      <td>$514,851</td>
+                    </tr>
+                    <tr>
+                      <td>Cargador Pi</td>
+                      <td>$35,910</td>
+                    </tr>
+                    <tr>
+                      <td>Router Wifi</td>
+                      <td>$95,153</td>
+                    </tr>
+                    <tr
+                      style="
+                        background: #1abc9c;
+                        color: white;
+                        font-weight: bold;
+                      "
+                    >
+                      <td><strong>TOTAL</strong></td>
+                      <td><strong>$645,914</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="module-chart">
+              <canvas id="hardwareChart"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Gráfica de Comparación de Todos los Componentes -->
-        <div style="margin-top: 40px">
+        <!-- Gráfica de Todos los Componentes -->
+        <div style="margin-top: 30px">
           <h3
             style="
               color: #2c3e50;
-              margin-bottom: 20px;
-              font-size: 1.3rem;
+              margin-bottom: 15px;
+              font-size: 1.2rem;
               text-align: center;
             "
           >
-            📊 Comparación Detallada: Todos los Componentes
+            📊 Comparación: Todos los Componentes
           </h3>
           <div
             style="
               background: white;
               border-radius: 10px;
-              padding: 20px;
+              padding: 15px;
               box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             "
           >
             <canvas
               id="allComponentsChart"
-              style="height: 400px !important"
+              style="height: 350px !important"
             ></canvas>
           </div>
         </div>
       </div>
 
-      <!-- Timeline -->
-      <!-- <div class="timeline">
-        <h2>🗓️ Cronograma de Desarrollo</h2>
-        <div class="timeline-item">
-          <div class="timeline-month">Mes 1</div>
-          <div class="timeline-content">
-            <div class="timeline-title">Arquitectura y Setup</div>
-            <div class="timeline-desc">
-              Análisis de requerimientos, diseño de arquitectura, setup del
-              entorno y configuración inicial de Raspberry Pi
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Mes 2-3</div>
-          <div class="timeline-content">
-            <div class="timeline-title">Desarrollo Core</div>
-            <div class="timeline-desc">
-              Biblioteca virtual básica, sistema multiidioma, backend principal
-              y base de datos inicial
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Mes 4-5</div>
-          <div class="timeline-content">
-            <div class="timeline-title">Funcionalidades Avanzadas</div>
-            <div class="timeline-desc">
-              Traductor de lenguaje de señas, biblia transmedia, plataforma de
-              aprendizaje y optimización responsive
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Mes 6</div>
-          <div class="timeline-content">
-            <div class="timeline-title">Testing e Integración</div>
-            <div class="timeline-desc">
-              Testing exhaustivo, integración final, configuración servidor y
-              optimización de performance
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Mes 7</div>
-          <div class="timeline-content">
-            <div class="timeline-title">Entrega Final</div>
-            <div class="timeline-desc">
-              Testing final, corrección de bugs, documentación completa y
-              entrega con capacitación
-            </div>
-          </div>
-        </div>
-      </div> -->
-
       <!-- Características Técnicas -->
       <div class="table-section">
-        <h2>🔧 Características Técnicas del Proyecto</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Componente</th>
-              <th>Tecnología</th>
-              <th>Descripción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Frontend</strong></td>
-              <td>React.js + TypeScript</td>
-              <td>Interfaz moderna y responsive</td>
-            </tr>
-            <tr>
-              <td><strong>Backend</strong></td>
-              <td>Node.js + Express</td>
-              <td>API REST escalable</td>
-            </tr>
-            <tr>
-              <td><strong>Base de Datos</strong></td>
-              <td>PostgreSQL + MongoDB</td>
-              <td>Datos relacionales y multimedia</td>
-            </tr>
-            <tr>
-              <td><strong>Traductor Señas</strong></td>
-              <td>SignAll API</td>
-              <td>Traducción automática ASL/LSC</td>
-            </tr>
-            <tr>
-              <td><strong>Multiidioma</strong></td>
-              <td>i18next</td>
-              <td>Español e Inglés</td>
-            </tr>
-            <tr>
-              <td><strong>Servidor Local</strong></td>
-              <td>Raspberry Pi 4</td>
-              <td>Ubuntu Server + Docker</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>🔧 Características Técnicas</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Componente</th>
+                <th>Tecnología</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Frontend</strong></td>
+                <td>React.js + TypeScript</td>
+              </tr>
+              <tr>
+                <td><strong>Backend</strong></td>
+                <td>Node.js + Express</td>
+              </tr>
+              <tr>
+                <td><strong>Base de Datos</strong></td>
+                <td>PostgreSQL + MongoDB</td>
+              </tr>
+              <tr>
+                <td><strong>Traductor Señas</strong></td>
+                <td>SignAll API</td>
+              </tr>
+              <tr>
+                <td><strong>Multiidioma</strong></td>
+                <td>i18next</td>
+              </tr>
+              <tr>
+                <td><strong>Servidor Local</strong></td>
+                <td>Raspberry Pi 4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      <!-- Footer -->
-      <!-- <div class="footer">
-        <h3>📞 Información de Contacto</h3>
-        <p>
-          Esta cotización es válida por 30 días y está sujeta a refinamiento
-          tras reunión técnica detallada.
-        </p>
-        <p style="margin-top: 10px; font-weight: 600; color: #27ae60">
-          Total del Proyecto: $30,035,914 COP | Duración: 7 meses
-        </p>
-      </div> -->
     </div>
 
     <script>
-      // Esperar a que Chart.js se cargue completamente
-      window.addEventListener("load", function () {
-        console.log("Iniciando carga de gráficas...");
+      // Configuración global de Chart.js
+      Chart.defaults.responsive = true;
+      Chart.defaults.maintainAspectRatio = false;
 
-        // Verificar si Chart.js está disponible
+      window.addEventListener("load", function () {
+        console.log("Iniciando carga de gráficas optimizadas para móvil...");
+
         if (typeof Chart === "undefined") {
           console.error("Chart.js no se cargó correctamente");
           return;
         }
 
-        // Datos del proyecto principal
+        // Datos del proyecto
         const projectData = {
           modules: [
             "Frontend",
@@ -1008,7 +1068,6 @@
           percentages: [38, 33, 11, 10, 6, 2],
         };
 
-        // Datos detallados por módulos
         const detailedData = {
           frontend: {
             labels: [
@@ -1067,15 +1126,9 @@
               "Router Wifi (opcional)",
             ],
             costs: [514851, 35910, 95153],
-            descriptions: [
-              "Servidor local con mejora de rendimiento sustancial",
-              "Cargador requerido (no incluido por defecto)",
-              "Amplía alcance wifi hasta >10mts (opcional)",
-            ],
           },
         };
 
-        // Todos los componentes para la gráfica final
         const allComponents = {
           labels: [
             "Interfaz biblioteca",
@@ -1134,7 +1187,6 @@
           ],
         };
 
-        // Colores para las gráficas
         const colors = [
           "#3498db",
           "#e74c3c",
@@ -1144,7 +1196,56 @@
           "#1abc9c",
         ];
 
-        // 1. Gráfica de distribución de costos (Dona)
+        // Función para detectar móvil
+        const isMobile = () => window.innerWidth <= 768;
+
+        // Opciones responsive
+        const getResponsiveOptions = (baseOptions) => {
+          const mobile = isMobile();
+          return {
+            ...baseOptions,
+            plugins: {
+              ...baseOptions.plugins,
+              legend: {
+                ...baseOptions.plugins?.legend,
+                labels: {
+                  ...baseOptions.plugins?.legend?.labels,
+                  font: { size: mobile ? 9 : 12 },
+                  padding: mobile ? 8 : 15,
+                  boxWidth: mobile ? 12 : 15,
+                },
+              },
+            },
+            scales: baseOptions.scales
+              ? {
+                  ...baseOptions.scales,
+                  x: baseOptions.scales.x
+                    ? {
+                        ...baseOptions.scales.x,
+                        ticks: {
+                          font: { size: mobile ? 8 : 11 },
+                          maxRotation: mobile ? 45 : 0,
+                        },
+                      }
+                    : undefined,
+                  y: baseOptions.scales.y
+                    ? {
+                        ...baseOptions.scales.y,
+                        ticks: { font: { size: mobile ? 8 : 11 } },
+                      }
+                    : undefined,
+                  y1: baseOptions.scales.y1
+                    ? {
+                        ...baseOptions.scales.y1,
+                        ticks: { font: { size: mobile ? 8 : 11 } },
+                      }
+                    : undefined,
+                }
+              : undefined,
+          };
+        };
+
+        // 1. Gráfica de distribución de costos
         try {
           const costCtx = document.getElementById("costChart");
           if (costCtx) {
@@ -1157,19 +1258,18 @@
                     data: projectData.costs,
                     backgroundColor: colors,
                     borderColor: "#ffffff",
-                    borderWidth: 3,
-                    hoverOffset: 15,
+                    borderWidth: 2,
+                    hoverOffset: isMobile() ? 8 : 15,
                   },
                 ],
               },
-              options: {
+              options: getResponsiveOptions({
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
                   legend: {
                     position: "bottom",
                     labels: {
-                      padding: 20,
                       usePointStyle: true,
                       generateLabels: function (chart) {
                         const data = chart.data;
@@ -1179,7 +1279,7 @@
                             text: `${label}: ${percentage}%`,
                             fillStyle: colors[i],
                             strokeStyle: colors[i],
-                            lineWidth: 2,
+                            lineWidth: 1,
                             hidden: false,
                             index: i,
                           };
@@ -1200,15 +1300,14 @@
                     },
                   },
                 },
-              },
+              }),
             });
-            console.log("Gráfica de costos creada exitosamente");
           }
         } catch (error) {
           console.error("Error creando gráfica de costos:", error);
         }
 
-        // 2. Gráfica de horas por módulo (Barras)
+        // 2. Gráfica de horas
         try {
           const hoursCtx = document.getElementById("hoursChart");
           if (hoursCtx) {
@@ -1223,40 +1322,30 @@
                 labels: hoursLabels,
                 datasets: [
                   {
-                    label: "Horas de Desarrollo",
+                    label: "Horas",
                     data: hoursData,
                     backgroundColor: colors.slice(0, 5),
                     borderColor: colors.slice(0, 5),
-                    borderWidth: 2,
-                    borderRadius: 8,
-                    borderSkipped: false,
+                    borderWidth: 1,
+                    borderRadius: 4,
                   },
                 ],
               },
-              options: {
+              options: getResponsiveOptions({
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
                   y: {
                     beginAtZero: true,
-                    grid: {
-                      color: "rgba(0,0,0,0.1)",
-                    },
-                    title: {
-                      display: true,
-                      text: "Horas",
-                    },
+                    grid: { color: "rgba(0,0,0,0.1)" },
+                    title: { display: !isMobile(), text: "Horas" },
                   },
                   x: {
-                    grid: {
-                      display: false,
-                    },
+                    grid: { display: false },
                   },
                 },
                 plugins: {
-                  legend: {
-                    display: false,
-                  },
+                  legend: { display: false },
                   tooltip: {
                     callbacks: {
                       label: function (context) {
@@ -1265,15 +1354,14 @@
                     },
                   },
                 },
-              },
+              }),
             });
-            console.log("Gráfica de horas creada exitosamente");
           }
         } catch (error) {
           console.error("Error creando gráfica de horas:", error);
         }
 
-        // 3. Gráfica de comparación Costos vs Horas
+        // 3. Gráfica de comparación
         try {
           const comparisonCtx = document.getElementById("comparisonChart");
           if (comparisonCtx) {
@@ -1291,7 +1379,7 @@
                 labels: filteredModules,
                 datasets: [
                   {
-                    label: "Costo (Millones COP)",
+                    label: "Costo (M COP)",
                     data: filteredCosts,
                     borderColor: "#e74c3c",
                     backgroundColor: "rgba(231, 76, 60, 0.1)",
@@ -1300,7 +1388,7 @@
                     yAxisID: "y",
                   },
                   {
-                    label: "Horas de Desarrollo",
+                    label: "Horas",
                     data: filteredHours,
                     borderColor: "#3498db",
                     backgroundColor: "rgba(52, 152, 219, 0.1)",
@@ -1310,233 +1398,149 @@
                   },
                 ],
               },
-              options: {
+              options: getResponsiveOptions({
                 responsive: true,
                 maintainAspectRatio: false,
-                interaction: {
-                  mode: "index",
-                  intersect: false,
-                },
+                interaction: { mode: "index", intersect: false },
                 scales: {
                   y: {
                     type: "linear",
                     display: true,
                     position: "left",
-                    title: {
-                      display: true,
-                      text: "Costo (Millones COP)",
-                    },
+                    title: { display: !isMobile(), text: "Costo (M)" },
                   },
                   y1: {
                     type: "linear",
                     display: true,
                     position: "right",
-                    title: {
-                      display: true,
-                      text: "Horas",
-                    },
-                    grid: {
-                      drawOnChartArea: false,
-                    },
+                    title: { display: !isMobile(), text: "Horas" },
+                    grid: { drawOnChartArea: false },
                   },
                 },
-                plugins: {
-                  legend: {
-                    position: "bottom",
-                  },
-                },
-              },
+                plugins: { legend: { position: "bottom" } },
+              }),
             });
-            console.log("Gráfica de comparación creada exitosamente");
           }
         } catch (error) {
           console.error("Error creando gráfica de comparación:", error);
         }
 
-        // 4. Gráfica detallada Frontend
-        try {
-          const frontendCtx = document.getElementById("frontendChart");
-          if (frontendCtx) {
-            new Chart(frontendCtx, {
-              type: "bar",
-              data: {
-                labels: detailedData.frontend.labels,
-                datasets: [
-                  {
-                    label: "Costo (Millones COP)",
-                    data: detailedData.frontend.costs.map((c) => c / 1000000),
-                    backgroundColor: "#3498db",
-                    borderColor: "#3498db",
-                    borderWidth: 2,
-                    borderRadius: 6,
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: "y",
-                scales: {
-                  x: {
-                    beginAtZero: true,
-                    title: { display: true, text: "Millones COP" },
-                  },
+        // Función para crear gráficas de barras de módulos
+        const createModuleBarChart = (canvasId, data, color) => {
+          try {
+            const ctx = document.getElementById(canvasId);
+            if (ctx) {
+              new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: data.labels,
+                  datasets: [
+                    {
+                      data: data.costs.map((c) => c / 1000000),
+                      backgroundColor: color,
+                      borderColor: color,
+                      borderWidth: 1,
+                      borderRadius: 3,
+                    },
+                  ],
                 },
-                plugins: {
-                  legend: { display: false },
-                  tooltip: {
-                    callbacks: {
-                      label: function (context) {
-                        const hours =
-                          detailedData.frontend.hours[context.dataIndex];
-                        return `${context.parsed.x.toFixed(1)}M (${hours}h)`;
+                options: getResponsiveOptions({
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  indexAxis: isMobile() ? "x" : "y",
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      title: { display: false },
+                    },
+                    y: {
+                      beginAtZero: true,
+                      title: { display: false },
+                    },
+                  },
+                  plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                      callbacks: {
+                        label: function (context) {
+                          const hours = data.hours[context.dataIndex];
+                          const cost = isMobile()
+                            ? context.parsed.y
+                            : context.parsed.x;
+                          return `${cost.toFixed(1)}M (${hours}h)`;
+                        },
                       },
                     },
                   },
-                },
-              },
-            });
+                }),
+              });
+            }
+          } catch (error) {
+            console.error(`Error creando gráfica ${canvasId}:`, error);
           }
-        } catch (error) {
-          console.error("Error creando gráfica frontend:", error);
-        }
+        };
 
-        // 5. Gráfica detallada Backend
-        try {
-          const backendCtx = document.getElementById("backendChart");
-          if (backendCtx) {
-            new Chart(backendCtx, {
-              type: "bar",
-              data: {
-                labels: detailedData.backend.labels,
-                datasets: [
-                  {
-                    label: "Costo (Millones COP)",
-                    data: detailedData.backend.costs.map((c) => c / 1000000),
-                    backgroundColor: "#e74c3c",
-                    borderColor: "#e74c3c",
-                    borderWidth: 2,
-                    borderRadius: 6,
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: "y",
-                scales: {
-                  x: {
-                    beginAtZero: true,
-                    title: { display: true, text: "Millones COP" },
-                  },
+        // Función para crear gráficas de dona
+        const createModuleDoughnutChart = (canvasId, data, colors) => {
+          try {
+            const ctx = document.getElementById(canvasId);
+            if (ctx) {
+              new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                  labels: data.labels,
+                  datasets: [
+                    {
+                      data: data.costs,
+                      backgroundColor: colors,
+                      borderColor: "#ffffff",
+                      borderWidth: 1,
+                    },
+                  ],
                 },
-                plugins: {
-                  legend: { display: false },
-                  tooltip: {
-                    callbacks: {
-                      label: function (context) {
-                        const hours =
-                          detailedData.backend.hours[context.dataIndex];
-                        return `${context.parsed.x.toFixed(1)}M (${hours}h)`;
+                options: getResponsiveOptions({
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: { position: "bottom" },
+                    tooltip: {
+                      callbacks: {
+                        label: function (context) {
+                          const hours = data.hours
+                            ? data.hours[context.dataIndex]
+                            : "";
+                          const hourText = hours ? ` (${hours}h)` : "";
+                          return `${context.label}: ${(
+                            context.raw / 1000000
+                          ).toFixed(1)}M${hourText}`;
+                        },
                       },
                     },
                   },
-                },
-              },
-            });
+                }),
+              });
+            }
+          } catch (error) {
+            console.error(`Error creando gráfica ${canvasId}:`, error);
           }
-        } catch (error) {
-          console.error("Error creando gráfica backend:", error);
-        }
+        };
 
-        // 6. Gráfica detallada Base de Datos
-        try {
-          const databaseCtx = document.getElementById("databaseChart");
-          if (databaseCtx) {
-            new Chart(databaseCtx, {
-              type: "doughnut",
-              data: {
-                labels: detailedData.database.labels,
-                datasets: [
-                  {
-                    data: detailedData.database.costs,
-                    backgroundColor: ["#2ecc71", "#27ae60", "#1e8449"],
-                    borderColor: "#ffffff",
-                    borderWidth: 2,
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: { position: "bottom" },
-                  tooltip: {
-                    callbacks: {
-                      label: function (context) {
-                        const hours =
-                          detailedData.database.hours[context.dataIndex];
-                        return `${context.label}: ${(
-                          context.raw / 1000000
-                        ).toFixed(1)}M (${hours}h)`;
-                      },
-                    },
-                  },
-                },
-              },
-            });
-          }
-        } catch (error) {
-          console.error("Error creando gráfica database:", error);
-        }
+        // Crear gráficas de módulos
+        createModuleBarChart("frontendChart", detailedData.frontend, "#3498db");
+        createModuleBarChart("backendChart", detailedData.backend, "#e74c3c");
+        createModuleDoughnutChart("databaseChart", detailedData.database, [
+          "#2ecc71",
+          "#27ae60",
+          "#1e8449",
+        ]);
+        createModuleDoughnutChart("testingChart", detailedData.testing, [
+          "#f39c12",
+          "#e67e22",
+          "#d68910",
+          "#b7950b",
+        ]);
 
-        // 7. Gráfica detallada Testing
-        try {
-          const testingCtx = document.getElementById("testingChart");
-          if (testingCtx) {
-            new Chart(testingCtx, {
-              type: "doughnut",
-              data: {
-                labels: detailedData.testing.labels,
-                datasets: [
-                  {
-                    data: detailedData.testing.costs,
-                    backgroundColor: [
-                      "#f39c12",
-                      "#e67e22",
-                      "#d68910",
-                      "#b7950b",
-                    ],
-                    borderColor: "#ffffff",
-                    borderWidth: 2,
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: { position: "bottom" },
-                  tooltip: {
-                    callbacks: {
-                      label: function (context) {
-                        const hours =
-                          detailedData.testing.hours[context.dataIndex];
-                        return `${context.label}: ${(
-                          context.raw / 1000000
-                        ).toFixed(1)}M (${hours}h)`;
-                      },
-                    },
-                  },
-                },
-              },
-            });
-          }
-        } catch (error) {
-          console.error("Error creando gráfica testing:", error);
-        }
-
-        // 8. Gráfica detallada Raspberry Pi
+        // Raspberry Pi
         try {
           const raspberryCtx = document.getElementById("raspberryChart");
           if (raspberryCtx) {
@@ -1546,23 +1550,20 @@
                 labels: detailedData.raspberry.labels,
                 datasets: [
                   {
-                    label: "Costo (Miles COP)",
                     data: detailedData.raspberry.costs.map((c) => c / 1000000),
                     backgroundColor: ["#9b59b6", "#8e44ad", "#7d3c98"],
                     borderColor: ["#9b59b6", "#8e44ad", "#7d3c98"],
-                    borderWidth: 2,
-                    borderRadius: 6,
+                    borderWidth: 1,
+                    borderRadius: 3,
                   },
                 ],
               },
-              options: {
+              options: getResponsiveOptions({
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                  y: {
-                    beginAtZero: true,
-                    title: { display: true, text: "Millones COP" },
-                  },
+                  y: { beginAtZero: true, title: { display: false } },
+                  x: { title: { display: false } },
                 },
                 plugins: {
                   legend: { display: false },
@@ -1576,62 +1577,24 @@
                     },
                   },
                 },
-              },
+              }),
             });
           }
         } catch (error) {
           console.error("Error creando gráfica raspberry:", error);
         }
 
-        // 9. Gráfica detallada Kit Hardware
-        try {
-          const hardwareCtx = document.getElementById("hardwareChart");
-          if (hardwareCtx) {
-            new Chart(hardwareCtx, {
-              type: "doughnut",
-              data: {
-                labels: detailedData.hardware.labels,
-                datasets: [
-                  {
-                    data: detailedData.hardware.costs,
-                    backgroundColor: ["#1abc9c", "#16a085", "#138d75"],
-                    borderColor: "#ffffff",
-                    borderWidth: 2,
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: "bottom",
-                    labels: {
-                      font: { size: 10 },
-                    },
-                  },
-                  tooltip: {
-                    callbacks: {
-                      label: function (context) {
-                        const percentage = (
-                          (context.raw / 645914) *
-                          100
-                        ).toFixed(1);
-                        return `${
-                          context.label
-                        }: ${context.raw.toLocaleString()} (${percentage}%)`;
-                      },
-                    },
-                  },
-                },
-              },
-            });
-          }
-        } catch (error) {
-          console.error("Error creando gráfica hardware:", error);
-        }
+        // Hardware
+        createModuleDoughnutChart(
+          "hardwareChart",
+          {
+            labels: detailedData.hardware.labels,
+            costs: detailedData.hardware.costs,
+          },
+          ["#1abc9c", "#16a085", "#138d75"]
+        );
 
-        // 10. Gráfica de todos los componentes
+        // Gráfica de todos los componentes
         try {
           const allComponentsCtx =
             document.getElementById("allComponentsChart");
@@ -1642,28 +1605,25 @@
                 labels: allComponents.labels,
                 datasets: [
                   {
-                    label: "Costo (Millones COP)",
                     data: allComponents.costs.map((c) => c / 1000000),
                     backgroundColor: allComponents.colors,
                     borderColor: allComponents.colors,
                     borderWidth: 1,
-                    borderRadius: 4,
+                    borderRadius: 2,
                   },
                 ],
               },
-              options: {
+              options: getResponsiveOptions({
                 responsive: true,
                 maintainAspectRatio: false,
                 indexAxis: "y",
                 scales: {
                   x: {
                     beginAtZero: true,
-                    title: { display: true, text: "Millones COP" },
+                    title: { display: !isMobile(), text: "Millones COP" },
                   },
                   y: {
-                    ticks: {
-                      font: { size: 10 },
-                    },
+                    ticks: { font: { size: isMobile() ? 7 : 9 } },
                   },
                 },
                 plugins: {
@@ -1678,7 +1638,7 @@
                     },
                   },
                 },
-              },
+              }),
             });
           }
         } catch (error) {
@@ -1688,39 +1648,33 @@
           );
         }
 
-        console.log("Todas las gráficas han sido procesadas");
+        console.log(
+          "Todas las gráficas optimizadas para móvil han sido creadas"
+        );
+
+        // Redimensionar al cambiar orientación
+        let resizeTimeout;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function () {
+            Chart.helpers.each(Chart.instances, function (instance) {
+              instance.resize();
+            });
+          }, 100);
+        });
       });
 
-      // Animaciones y efectos adicionales
+      // Animaciones
       document.addEventListener("DOMContentLoaded", function () {
-        // Animación de entrada para las cards
         const cards = document.querySelectorAll(".card");
         cards.forEach((card, index) => {
           card.style.opacity = "0";
-          card.style.transform = "translateY(20px)";
+          card.style.transform = "translateY(10px)";
           setTimeout(() => {
-            card.style.transition = "all 0.6s ease";
+            card.style.transition = "all 0.4s ease";
             card.style.opacity = "1";
             card.style.transform = "translateY(0)";
-          }, index * 100);
-        });
-
-        // Animación de entrada para elementos del timeline
-        const timelineItems = document.querySelectorAll(".timeline-item");
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateX(0)";
-            }
-          });
-        });
-
-        timelineItems.forEach((item, index) => {
-          item.style.opacity = "0";
-          item.style.transform = "translateX(-20px)";
-          item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-          observer.observe(item);
+          }, index * 50);
         });
       });
     </script>
